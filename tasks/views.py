@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Task
 from .forms import TaskForm
 
@@ -13,7 +13,7 @@ def home(request):
             new_task.save()
             return redirect('home') # Redirect to the home page after saving
     else:
-            form = TaskForm() # Reinitialize the form if it's not valid
+        form = TaskForm() # Reinitialize the form if it's not valid
 
 
     # Fetch tasks based on their completion status
@@ -27,3 +27,23 @@ def home(request):
         'done_tasks': done_tasks,
     }
     return render(request, 'tasks/index.html', context)
+
+def mark_as_complete(request, task_id):
+    """Mark a task as complete."""
+    task = get_object_or_404(Task, id=task_id)
+    task.completed_status = True
+    task.save()
+    return redirect('home')
+
+def mark_as_uncomplete(request, task_id):
+    """Mark a task as uncomplete."""
+    task = get_object_or_404(Task, id=task_id)
+    task.completed_status = False
+    task.save()
+    return redirect('home')
+
+def delete_task(request, task_id):
+    """Delete a task."""
+    task = get_object_or_404(Task, id=task_id)
+    task.delete()
+    return redirect('home')

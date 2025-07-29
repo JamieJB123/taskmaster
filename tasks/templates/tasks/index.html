@@ -66,8 +66,8 @@
                                 <td>{{ task.title }}</td>
                                 <td>{{ task.category.name }}</td>
                                 <td>
-                                    <a href="#"><i class="fa-regular fa-square checkbox-btn"></i></a>
-                                    <a href="#"><i class="fa-solid fa-trash-can delete-btn"></i></a>
+                                    <a href="{% url 'mark_as_complete' task.id %}"><i class="fa-regular fa-square checkbox-btn"></i></a>
+                                    <a href="{% url 'delete_task' task.id %}"><i class="fa-solid fa-trash-can delete-btn"></i></a>
                                 </td>
                             </tr>
                             {% empty %}
@@ -96,8 +96,8 @@
                                 <td>{{ task.title }}</td>
                                 <td>{{ task.category.name }}</td>
                                 <td>
-                                    <a href="#" aria-label="Delete task" title="Delete task"><i class="fa-regular fa-square-check checkbox-btn"></i></a>
-                                    <a href="#" aria-label="Mark as not done" title="Mark as not done"><i class="fa-solid fa-trash-can delete-btn"></i></a>
+                                    <a href="{% url 'uncomplete_task' task.id %}" aria-label="Mark as not done" title="Mark as not done"><i class="fa-regular fa-square-check checkbox-btn"></i></a>
+                                    <a href="{% url 'delete_task' task.id %}" aria-label="Delete task" title="Delete task"><i class="fa-solid fa-trash-can delete-btn"></i></a>
                                 </td>
                             </tr>
                             {% empty %}
