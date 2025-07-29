@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY',)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["ci-taskmaster-app-8aa6c016d1b3.herokuapp.com",]
 
 
 # Application definition
